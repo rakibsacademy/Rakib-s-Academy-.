@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Rakib's Academy Online</title>
+  <!-- Supabase CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+    body { background: #f5f7fb; display: flex; justify-content: center; align-items: center; height: 100vh; }
+    .login-card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 100%; max-width: 400px; }
+    h2 { color: #0f766e; text-align: center; margin-bottom: 20px; }
+    .form-group { margin-bottom: 15px; }
+    label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 14px; color: #333; }
+    input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; }
+    button { width: 100%; background: #0f766e; color: white; border: none; padding: 11px; border-radius: 6px; font-size: 16px; cursor: pointer; font-weight: bold; margin-top: 10px; }
+    button:hover { background: #0d5e56; }
+    .error-msg { color: #dc2626; font-size: 13px; text-align: center; margin-top: 10px; }
+  </style>
+</head>
+<body>
+
+  <div class="login-card">
+    <h2>Rakib's Academy</h2>
+    <form id="loginForm">
+      <div class="form-group">
+        <label>ইমেল (Email)</label>
+        <input type="email" id="email" required placeholder="admin@gmail.com">
+      </div>
+      <div class="form-group">
+        <label>পাসওয়ার্ড (Password)</label>
+        <input type="password" id="password" required placeholder="********">
+      </div>
+      <button type="submit" id="loginBtn">লগইন করুন</button>
+      <p id="errorMsg" class="error-msg"></p>
+    </form>
+  </div>
+
+  <script>
+    // Supabase প্রজেক্ট কনফিগারেশন
+    const SUPABASE_URL = 'https://ihetuifvfsqdzqkzbrxg.supabase.co';
+    const SUPABASE_ANON_KEY = 'sb_publishable_CBx9Yy8hC-8YYC2F7ZB3Jw_v_BaxZm4';
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const errorMsg = document.getElementById('errorMsg');
+      const loginBtn = document.getElementById('loginBtn');
+
+      errorMsg.textContent = '';
+      loginBtn.textContent = 'লগইন হচ্ছে...';
+
+      const { data, error } = await supabaseClient.auth.signInWithPassword({
+        email: email,
+        password: password,
+      });
+
+      if (error) {
+        errorMsg.textContent = 'লগইন ব্যর্থ হয়েছে: ' + error.message;
+        loginBtn.textContent = 'লগইন করুন';
+      } else {
+        alert('সফলভাবে লগইন হয়েছে!');
+        window.location.href = 'admin.html';
+      }
+    });
+  </script>
+
+</body>
+</html>
