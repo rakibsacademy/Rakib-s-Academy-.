@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ভর্তি | Rakib's Academy Online</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #333;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 30px auto;
+      padding: 20px;
+    }
+
+    .box {
+      background: white;
+      padding: 25px;
+      border-radius: 18px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+      text-align: center;
+      color: #087f73;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #777;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 25px;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      background: #087f73;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .back {
+      display: block;
+      text-align: center;
+      margin-top: 18px;
+      color: #087f73;
+      text-decoration: none;
+    }
+
+    #message {
+      margin-top: 15px;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="box">
+
+    <h1>🎓 শিক্ষার্থী ভর্তি</h1>
+    <div class="subtitle">Rakib's Academy Online</div>
+
+    <form id="admissionForm">
+
+      <label>শিক্ষার্থীর নাম</label>
+      <input type="text" id="studentName" placeholder="শিক্ষার্থীর পূর্ণ নাম" required>
+
+      <label>পিতার নাম</label>
+      <input type="text" id="fatherName" placeholder="পিতার নাম" required>
+
+      <label>মাতার নাম</label>
+      <input type="text" id="motherName" placeholder="মাতার নাম">
+
+      <label>মোবাইল নম্বর</label>
+      <input type="tel" id="phone" placeholder="01XXXXXXXXX" required>
+
+      <label>শ্রেণি</label>
+      <select id="className" required>
+        <option value="">শ্রেণি নির্বাচন করুন</option>
+        <option>প্রথম</option>
+        <option>দ্বিতীয়</option>
+        <option>তৃতীয়</option>
+        <option>চতুর্থ</option>
+        <option>পঞ্চম</option>
+        <option>ষষ্ঠ</option>
+        <option>সপ্তম</option>
+        <option>অষ্টম</option>
+        <option>নবম</option>
+        <option>দশম</option>
+      </select>
+
+      <label>ঠিকানা</label>
+      <textarea id="address" placeholder="বর্তমান ঠিকানা"></textarea>
+
+      <button type="submit">ভর্তি আবেদন জমা দিন</button>
+
+      <div id="message"></div>
+
+    </form>
+
+    <a class="back" href="index.html">← মূল পেজে ফিরে যান</a>
+
+  </div>
+</div>
+
+<script>
+  document.getElementById("admissionForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    document.getElementById("message").innerText =
+      "✅ ভর্তি আবেদন প্রস্তুত হয়েছে।";
+
+    this.reset();
+  });
+</script>
+
+</body>
+</html>
