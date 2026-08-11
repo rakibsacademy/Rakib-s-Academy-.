@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ID Card | Rakib's Academy Online">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: #f5f7fb;
+      color: #222;
+    }
+
+    header {
+      background: #0f766e;
+      color: white;
+      text-align: center;
+      padding: 22px 15px;
+    }
+
+    header h1 {
+      margin: 0 0 6px;
+      font-size: 25px;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: auto;
+      padding: 25px 15px;
+    }
+
+    .box {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    }
+
+    h2 {
+      text-align: center;
+      color: #0f766e;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin: 12px 0 6px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 11px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 13px;
+      border: none;
+      border-radius: 8px;
+      background: #0f766e;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .id-card {
+      display: none;
+      margin-top: 25px;
+      background: white;
+      border: 2px solid #0f766e;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    .id-header {
+      background: #0f766e;
+      color: white;
+      text-align: center;
+      padding: 15px;
+    }
+
+    .id-header h2 {
+      color: white;
+      margin: 0;
+    }
+
+    .id-body {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .photo {
+      width: 100px;
+      height: 120px;
+      border: 1px solid #ccc;
+      margin: 0 auto 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #888;
+      font-size: 13px;
+    }
+
+    .info {
+      text-align: left;
+      line-height: 1.8;
+    }
+
+    .info strong {
+      color: #0f766e;
+    }
+
+    .back {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: #0f766e;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Rakib's Academy Online</h1>
+  <p>শিক্ষার্থী ID Card</p>
+</header>
+
+<main class="container">
+
+  <div class="box">
+
+    <h2>🪪 ID Card তৈরি করুন</h2>
+
+    <label>Student ID</label>
+    <input type="text" id="studentId" placeholder="যেমন: RA-0001">
+
+    <label>শিক্ষার্থীর নাম</label>
+    <input type="text" id="studentName" placeholder="পূর্ণ নাম">
+
+    <label>শ্রেণি</label>
+    <input type="text" id="studentClass" placeholder="শ্রেণি">
+
+    <label>মোবাইল নম্বর</label>
+    <input type="text" id="studentPhone" placeholder="মোবাইল নম্বর">
+
+    <button onclick="generateCard()">
+      ID Card তৈরি করুন
+    </button>
+
+    <div class="id-card" id="idCard">
+
+      <div class="id-header">
+        <h2>Rakib's Academy</h2>
+        <div>Student ID Card</div>
+      </div>
+
+      <div class="id-body">
+
+        <div class="photo">
+          শিক্ষার্থীর ছবি
+        </div>
+
+        <div class="info">
+          <div><strong>Student ID:</strong> <span id="showId"></span></div>
+          <div><strong>নাম:</strong> <span id="showName"></span></div>
+          <div><strong>শ্রেণি:</strong> <span id="showClass"></span></div>
+          <div><strong>মোবাইল:</strong> <span id="showPhone"></span></div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <a href="index.html" class="back">
+      ← মূল পেজে ফিরে যান
+    </a>
+
+  </div>
+
+</main>
+
+<script>
+function generateCard() {
+
+  const id = document.getElementById("studentId").value;
+  const name = document.getElementById("studentName").value;
+  const studentClass = document.getElementById("studentClass").value;
+  const phone = document.getElementById("studentPhone").value;
+
+  if (!id || !name || !studentClass) {
+    alert("Student ID, নাম ও শ্রেণি পূরণ করুন।");
+    return;
+  }
+
+  document.getElementById("showId").innerText = id;
+  document.getElementById("showName").innerText = name;
+  document.getElementById("showClass").innerText = studentClass;
+  document.getElementById("showPhone").innerText = phone;
+
+  document.getElementById("idCard").style.display = "block";
+}
+</script>
+
+</body>
+</html>
