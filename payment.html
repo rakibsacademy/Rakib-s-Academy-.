@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>বেতন | Rakib's Academy Online</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f7fb;
+      color: #222;
+    }
+
+    header {
+      background: #0f766e;
+      color: white;
+      padding: 25px 15px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 26px;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      font-size: 15px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      padding: 25px 15px;
+    }
+
+    .box {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    }
+
+    h2 {
+      text-align: center;
+      color: #0f766e;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 22px;
+      padding: 13px;
+      background: #0f766e;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0b5f59;
+    }
+
+    .back {
+      display: block;
+      text-align: center;
+      margin-top: 18px;
+      color: #0f766e;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer {
+      margin-top: 30px;
+      background: #111827;
+      color: white;
+      text-align: center;
+      padding: 18px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Rakib's Academy Online</h1>
+  <p>বেতন ও ফি ব্যবস্থাপনা</p>
+</header>
+
+<main class="container">
+
+  <div class="box">
+
+    <h2>💳 শিক্ষার্থীর বেতন</h2>
+
+    <label>শিক্ষার্থীর নাম</label>
+    <input type="text" placeholder="শিক্ষার্থীর পূর্ণ নাম">
+
+    <label>শ্রেণি</label>
+    <select>
+      <option>শ্রেণি নির্বাচন করুন</option>
+      <option>৬ষ্ঠ</option>
+      <option>৭ম</option>
+      <option>৮ম</option>
+      <option>৯ম</option>
+      <option>১০ম</option>
+    </select>
+
+    <label>মাস</label>
+    <select>
+      <option>মাস নির্বাচন করুন</option>
+      <option>জানুয়ারি</option>
+      <option>ফেব্রুয়ারি</option>
+      <option>মার্চ</option>
+      <option>এপ্রিল</option>
+      <option>মে</option>
+      <option>জুন</option>
+      <option>জুলাই</option>
+      <option>আগস্ট</option>
+      <option>সেপ্টেম্বর</option>
+      <option>অক্টোবর</option>
+      <option>নভেম্বর</option>
+      <option>ডিসেম্বর</option>
+    </select>
+
+    <label>বেতনের পরিমাণ</label>
+    <input type="number" placeholder="টাকার পরিমাণ">
+
+    <label>পেমেন্টের মাধ্যম</label>
+    <select>
+      <option>পেমেন্ট মাধ্যম নির্বাচন করুন</option>
+      <option>নগদ</option>
+      <option>বিকাশ</option>
+      <option>নগদ (Nagad)</option>
+      <option>রকেট</option>
+      <option>ব্যাংক</option>
+    </select>
+
+    <button onclick="alert('বেতন তথ্য গ্রহণ করা হয়েছে।')">
+      বেতন জমা দিন
+    </button>
+
+    <a href="index.html" class="back">← মূল পেজে ফিরে যান</a>
+
+  </div>
+
+</main>
+
+<footer>
+  © 2026 Rakib's Academy Online
+</footer>
+
+</body>
+</html>
