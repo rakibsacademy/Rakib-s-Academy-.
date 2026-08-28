@@ -6,7 +6,6 @@
 
   <title>শিক্ষার্থী ভর্তি - Rakib's Academy</title>
 
-  <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
@@ -76,6 +75,7 @@
       color: white;
       font-size: 19px;
       font-weight: bold;
+      cursor: pointer;
     }
 
     button:disabled {
@@ -85,8 +85,9 @@
     #message {
       text-align: center;
       margin-top: 20px;
-      font-size: 17px;
+      font-size: 16px;
       font-weight: bold;
+      word-break: break-word;
     }
 
     .back {
@@ -176,10 +177,6 @@
 
 <script>
 
-  /* ==============================
-     SUPABASE CONFIGURATION
-     ============================== */
-
   const SUPABASE_URL =
     "https://ihetuifvsqdzqkzbrxg.supabase.co";
 
@@ -192,10 +189,6 @@
       SUPABASE_KEY
     );
 
-
-  /* ==============================
-     ADMISSION FORM
-     ============================== */
 
   document
     .getElementById("admissionForm")
@@ -212,80 +205,54 @@
       submitBtn.disabled = true;
       submitBtn.innerText = "জমা হচ্ছে...";
 
+      message.innerText = "";
+
       const studentData = {
 
         full_name:
-          document
-            .getElementById("full_name")
-            .value
-            .trim(),
+          document.getElementById("full_name").value.trim(),
 
         father_name:
-          document
-            .getElementById("father_name")
-            .value
-            .trim(),
+          document.getElementById("father_name").value.trim(),
 
         mother_name:
-          document
-            .getElementById("mother_name")
-            .value
-            .trim(),
+          document.getElementById("mother_name").value.trim(),
 
         mobile:
-          document
-            .getElementById("mobile")
-            .value
-            .trim(),
+          document.getElementById("mobile").value.trim(),
 
         class_name:
-          document
-            .getElementById("class_name")
-            .value,
+          document.getElementById("class_name").value,
 
         address:
-          document
-            .getElementById("address")
-            .value
-            .trim()
+          document.getElementById("address").value.trim()
       };
 
 
-      /* ==============================
-         SEND DATA TO SUPABASE
-         ============================== */
-
-      const { error } =
+      const { data, error } =
         await supabaseClient
           .from("students")
-          .insert(studentData);
+          .insert([studentData])
+          .select();
 
-
-      /* ==============================
-         ERROR
-         ============================== */
 
       if (error) {
 
-        console.error(error);
+        console.error("SUPABASE ERROR:", error);
 
         message.style.color = "red";
 
         message.innerText =
-          "❌ আবেদন জমা হয়নি। আবার চেষ্টা করুন।";
+          "❌ আবেদন জমা হয়নি। কারণ: " +
+          error.message;
 
         submitBtn.disabled = false;
-
         submitBtn.innerText =
           "ভর্তি আবেদন জমা দিন";
 
         return;
       }
 
-
-      /* ==============================
-         SUCCESS
-         ============================== */
 
       message.style.color = "green";
 
@@ -303,11 +270,6 @@
 
     });
 
-</script>
-
-</body>
-</html>    this.reset();
-  });
 </script>
 
 </body>
