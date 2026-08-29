@@ -4,36 +4,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Admin Dashboard | Rakib's Academy</title>
+  <title>Admin Dashboard - Rakib's Academy</title>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
-      background: #f5f7fb;
       font-family: Arial, sans-serif;
+      background: #f5f7fb;
       color: #222;
     }
 
     header {
       background: #0f766e;
       color: white;
-      padding: 22px 15px;
       text-align: center;
+      padding: 25px 15px;
     }
 
     header h1 {
-      margin: 0 0 6px;
-      font-size: 27px;
+      font-size: 28px;
+      margin-bottom: 7px;
     }
 
     header p {
-      margin: 0;
       font-size: 15px;
     }
 
@@ -43,17 +43,17 @@
       padding: 20px 15px;
     }
 
-    .topbar {
+    .top-card {
       background: white;
       padding: 20px;
       border-radius: 15px;
-      margin-bottom: 20px;
       box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+      margin-bottom: 20px;
     }
 
-    .topbar h2 {
-      margin: 0 0 15px;
+    .top-card h2 {
       color: #0f766e;
+      margin-bottom: 15px;
     }
 
     .stats {
@@ -72,30 +72,53 @@
     }
 
     .stat h3 {
-      margin: 0 0 8px;
       color: #666;
       font-size: 16px;
+      margin-bottom: 10px;
     }
 
     .stat strong {
-      font-size: 30px;
       color: #0f766e;
+      font-size: 30px;
     }
 
-    .search-box {
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 18px;
+      border: none;
+      border-radius: 9px;
+      background: #0f766e;
+      color: white;
+      text-decoration: none;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+
+    .search {
       background: white;
       padding: 20px;
       border-radius: 15px;
-      margin-bottom: 20px;
       box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+      margin-bottom: 20px;
     }
 
-    .search-box input {
+    .search input {
       width: 100%;
       padding: 14px;
       border: 1px solid #ddd;
       border-radius: 10px;
       font-size: 16px;
+      outline: none;
     }
 
     .table-box {
@@ -109,12 +132,12 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 850px;
+      min-width: 900px;
     }
 
     th,
     td {
-      padding: 13px 10px;
+      padding: 12px 10px;
       border-bottom: 1px solid #eee;
       text-align: left;
     }
@@ -122,57 +145,25 @@
     th {
       background: #f0fdfa;
       color: #0f766e;
+      white-space: nowrap;
     }
 
     tr:hover {
       background: #fafafa;
     }
 
-    .empty {
+    .status {
       text-align: center;
-      padding: 30px;
-      color: #777;
-    }
-
-    .loading {
-      text-align: center;
-      padding: 30px;
-      color: #0f766e;
-    }
-
-    .error {
-      text-align: center;
-      padding: 20px;
-      color: red;
+      padding: 25px;
       font-weight: bold;
     }
 
-    .buttons {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 15px;
+    .error {
+      color: red;
     }
 
-    button,
-    .home-btn {
-      border: none;
-      padding: 11px 17px;
-      border-radius: 8px;
-      background: #0f766e;
-      color: white;
-      cursor: pointer;
-      text-decoration: none;
-      font-size: 15px;
-    }
-
-    button:hover,
-    .home-btn:hover {
-      opacity: 0.9;
-    }
-
-    .logout {
-      background: #dc2626;
+    .empty {
+      color: #777;
     }
 
     @media (max-width: 600px) {
@@ -184,8 +175,8 @@
         padding: 12px;
       }
 
-      .topbar,
-      .search-box,
+      .top-card,
+      .search,
       .table-box {
         padding: 15px;
       }
@@ -195,373 +186,397 @@
 
 <body>
 
-<header>
-  <h1>Rakib's Academy Online</h1>
-  <p>Admin Dashboard</p>
-</header>
+  <header>
+    <h1>Rakib's Academy Online</h1>
+    <p>Admin Dashboard</p>
+  </header>
 
 
-<div class="container">
+  <main class="container">
 
-  <div class="topbar">
+    <div class="top-card">
 
-    <h2>📊 শিক্ষার্থী ব্যবস্থাপনা</h2>
+      <h2>📊 শিক্ষার্থী ব্যবস্থাপনা</h2>
 
-    <div class="buttons">
-      <button onclick="loadStudents()">
-        🔄 তথ্য Refresh
-      </button>
+      <div class="actions">
 
-      <a href="index.html" class="home-btn">
-        🏠 মূল পেজ
-      </a>
+        <button class="btn" onclick="loadStudents()">
+          🔄 Refresh
+        </button>
 
-      <button class="logout" onclick="logout()">
-        🚪 Logout
-      </button>
+        <a href="index.html" class="btn">
+          🏠 মূল পেজ
+        </a>
+
+      </div>
+
     </div>
 
-  </div>
 
+    <div class="stats">
 
-  <div class="stats">
+      <div class="stat">
+        <h3>👨‍🎓 মোট শিক্ষার্থী</h3>
+        <strong id="totalStudents">0</strong>
+      </div>
 
-    <div class="stat">
-      <h3>মোট শিক্ষার্থী</h3>
-      <strong id="totalStudents">0</strong>
+      <div class="stat">
+        <h3>📝 মোট আবেদন</h3>
+        <strong id="totalApplications">0</strong>
+      </div>
+
     </div>
 
-    <div class="stat">
-      <h3>সর্বশেষ আবেদন</h3>
-      <strong id="latestStudents">0</strong>
+
+    <div class="search">
+
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="🔎 নাম, পিতার নাম, মোবাইল বা শ্রেণি দিয়ে খুঁজুন..."
+        oninput="searchStudents()"
+      >
+
     </div>
 
-  </div>
 
+    <div class="table-box">
 
-  <div class="search-box">
+      <div id="status" class="status">
+        শিক্ষার্থীদের তথ্য লোড হচ্ছে...
+      </div>
 
-    <input
-      type="text"
-      id="searchInput"
-      placeholder="🔎 নাম, পিতার নাম, মোবাইল বা শ্রেণি দিয়ে খুঁজুন..."
-      oninput="searchStudents()"
-    >
+      <table id="studentTable" style="display:none;">
 
-  </div>
+        <thead>
 
+          <tr>
+            <th>ক্রমিক</th>
+            <th>শিক্ষার্থীর নাম</th>
+            <th>পিতার নাম</th>
+            <th>মাতার নাম</th>
+            <th>মোবাইল</th>
+            <th>শ্রেণি</th>
+            <th>ঠিকানা</th>
+            <th>তারিখ</th>
+          </tr>
 
-  <div class="table-box">
+        </thead>
 
-    <div id="status" class="loading">
-      শিক্ষার্থীদের তথ্য লোড হচ্ছে...
+        <tbody id="studentTableBody"></tbody>
+
+      </table>
+
     </div>
 
-    <table id="studentTable" style="display:none;">
-
-      <thead>
-
-        <tr>
-          <th>ক্রমিক</th>
-          <th>শিক্ষার্থীর নাম</th>
-          <th>পিতার নাম</th>
-          <th>মাতার নাম</th>
-          <th>মোবাইল</th>
-          <th>শ্রেণি</th>
-          <th>ঠিকানা</th>
-          <th>তারিখ</th>
-        </tr>
-
-      </thead>
-
-      <tbody id="studentTableBody"></tbody>
-
-    </table>
-
-  </div>
-
-</div>
+  </main>
 
 
-<script>
+  <script>
 
-  /* ================================
-     SUPABASE CONNECTION
-     ================================ */
+    /* =========================
+       SUPABASE CONFIGURATION
+       ========================= */
 
-  const SUPABASE_URL =
-    "https://ihetuifvfsqdzqkzbrxg.supabase.co";
+    const SUPABASE_URL =
+      "https://ihetuifvfsqdzqkzbrxg.supabase.co";
 
-  const SUPABASE_KEY =
-    "sb_publishable_CBx9Yy8hC-8YYC2F7ZB3Jw_v_BaxZm4";
-
-  const supabaseClient =
-    window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_KEY
-    );
+    const SUPABASE_KEY =
+      "sb_publishable_CBx9Yy8hC-8YYC2F7ZB3Jw_v_BaxZm4";
 
 
-  let allStudents = [];
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
 
 
-  /* ================================
-     LOAD STUDENTS
-     ================================ */
-
-  async function loadStudents() {
-
-    const status =
-      document.getElementById("status");
-
-    const table =
-      document.getElementById("studentTable");
-
-    status.style.display = "block";
-
-    status.className = "loading";
-
-    status.innerText =
-      "শিক্ষার্থীদের তথ্য লোড হচ্ছে...";
-
-    table.style.display = "none";
+    let allStudents = [];
 
 
-    const { data, error } =
-      await supabaseClient
-        .from("students")
-        .select("*")
-        .order("created_at", {
-          ascending: false
-        });
+    /* =========================
+       LOAD STUDENTS
+       ========================= */
+
+    async function loadStudents() {
+
+      const status =
+        document.getElementById("status");
+
+      const table =
+        document.getElementById("studentTable");
 
 
-    if (error) {
-
-      console.error(error);
-
-      status.className = "error";
+      status.className = "status";
 
       status.innerText =
-        "❌ তথ্য লোড করা যায়নি: " +
-        error.message;
-
-      return;
-    }
-
-
-    allStudents = data || [];
-
-    document.getElementById(
-      "totalStudents"
-    ).innerText = allStudents.length;
-
-
-    document.getElementById(
-      "latestStudents"
-    ).innerText =
-      allStudents.slice(0, 5).length;
-
-
-    displayStudents(allStudents);
-  }
-
-
-  /* ================================
-     DISPLAY STUDENTS
-     ================================ */
-
-  function displayStudents(students) {
-
-    const status =
-      document.getElementById("status");
-
-    const table =
-      document.getElementById("studentTable");
-
-    const tbody =
-      document.getElementById("studentTableBody");
-
-
-    tbody.innerHTML = "";
-
-
-    if (students.length === 0) {
-
-      table.style.display = "none";
+        "শিক্ষার্থীদের তথ্য লোড হচ্ছে...";
 
       status.style.display = "block";
 
-      status.className = "empty";
-
-      status.innerText =
-        "কোনো শিক্ষার্থীর তথ্য পাওয়া যায়নি।";
-
-      return;
-    }
+      table.style.display = "none";
 
 
-    status.style.display = "none";
-
-    table.style.display = "table";
-
-
-    students.forEach(function(student, index) {
-
-      const row =
-        document.createElement("tr");
+      const { data, error } =
+        await supabaseClient
+          .from("students")
+          .select("*")
+          .order("created_at", {
+            ascending: false
+          });
 
 
-      const date =
-        student.created_at
-          ? new Date(
-              student.created_at
-            ).toLocaleDateString("bn-BD")
-          : "-";
+      if (error) {
+
+        console.error(error);
+
+        status.className =
+          "status error";
+
+        status.innerText =
+          "❌ তথ্য লোড করা যায়নি: " +
+          error.message;
+
+        return;
+      }
 
 
-      row.innerHTML = `
-
-        <td>${index + 1}</td>
-
-        <td>${escapeHTML(
-          student.full_name || "-"
-        )}</td>
-
-        <td>${escapeHTML(
-          student.father_name || "-"
-        )}</td>
-
-        <td>${escapeHTML(
-          student.mother_name || "-"
-        )}</td>
-
-        <td>${escapeHTML(
-          student.mobile || "-"
-        )}</td>
-
-        <td>${escapeHTML(
-          student.class_name || "-"
-        )}</td>
-
-        <td>${escapeHTML(
-          student.address || "-"
-        )}</td>
-
-        <td>${date}</td>
-
-      `;
+      allStudents = data || [];
 
 
-      tbody.appendChild(row);
-
-    });
-
-  }
-
-
-  /* ================================
-     SEARCH
-     ================================ */
-
-  function searchStudents() {
-
-    const query =
-      document
-        .getElementById("searchInput")
-        .value
-        .toLowerCase()
-        .trim();
+      document.getElementById(
+        "totalStudents"
+      ).innerText =
+        allStudents.length;
 
 
-    if (!query) {
+      document.getElementById(
+        "totalApplications"
+      ).innerText =
+        allStudents.length;
+
 
       displayStudents(allStudents);
 
-      return;
     }
 
 
-    const filtered =
-      allStudents.filter(function(student) {
+    /* =========================
+       DISPLAY STUDENTS
+       ========================= */
 
-        return (
+    function displayStudents(students) {
 
-          (student.full_name || "")
-            .toLowerCase()
-            .includes(query)
+      const status =
+        document.getElementById("status");
 
-          ||
+      const table =
+        document.getElementById("studentTable");
 
-          (student.father_name || "")
-            .toLowerCase()
-            .includes(query)
+      const tbody =
+        document.getElementById("studentTableBody");
 
-          ||
 
-          (student.mother_name || "")
-            .toLowerCase()
-            .includes(query)
+      tbody.innerHTML = "";
 
-          ||
 
-          (student.mobile || "")
-            .toLowerCase()
-            .includes(query)
+      if (students.length === 0) {
 
-          ||
+        table.style.display = "none";
 
-          (student.class_name || "")
-            .toLowerCase()
-            .includes(query)
+        status.style.display = "block";
 
+        status.className =
+          "status empty";
+
+        status.innerText =
+          "কোনো শিক্ষার্থীর তথ্য পাওয়া যায়নি।";
+
+        return;
+      }
+
+
+      status.style.display = "none";
+
+      table.style.display = "table";
+
+
+      students.forEach(
+        function(student, index) {
+
+          const row =
+            document.createElement("tr");
+
+
+          let date = "-";
+
+
+          if (student.created_at) {
+
+            date =
+              new Date(
+                student.created_at
+              ).toLocaleDateString(
+                "bn-BD"
+              );
+
+          }
+
+
+          row.innerHTML = `
+
+            <td>${index + 1}</td>
+
+            <td>${escapeHTML(
+              student.full_name || "-"
+            )}</td>
+
+            <td>${escapeHTML(
+              student.father_name || "-"
+            )}</td>
+
+            <td>${escapeHTML(
+              student.mother_name || "-"
+            )}</td>
+
+            <td>${escapeHTML(
+              student.mobile || "-"
+            )}</td>
+
+            <td>${escapeHTML(
+              student.class_name || "-"
+            )}</td>
+
+            <td>${escapeHTML(
+              student.address || "-"
+            )}</td>
+
+            <td>${date}</td>
+
+          `;
+
+
+          tbody.appendChild(row);
+
+        }
+      );
+
+    }
+
+
+    /* =========================
+       SEARCH STUDENTS
+       ========================= */
+
+    function searchStudents() {
+
+      const query =
+        document
+          .getElementById("searchInput")
+          .value
+          .toLowerCase()
+          .trim();
+
+
+      if (!query) {
+
+        displayStudents(
+          allStudents
         );
 
-      });
+        return;
+      }
 
 
-    displayStudents(filtered);
+      const filtered =
+        allStudents.filter(
+          function(student) {
 
-  }
+            return (
+
+              (student.full_name || "")
+                .toLowerCase()
+                .includes(query)
+
+              ||
+
+              (student.father_name || "")
+                .toLowerCase()
+                .includes(query)
+
+              ||
+
+              (student.mother_name || "")
+                .toLowerCase()
+                .includes(query)
+
+              ||
+
+              (student.mobile || "")
+                .toLowerCase()
+                .includes(query)
+
+              ||
+
+              (student.class_name || "")
+                .toLowerCase()
+                .includes(query)
+
+            );
+
+          }
+        );
 
 
-  /* ================================
-     SECURITY
-     ================================ */
+      displayStudents(filtered);
 
-  function escapeHTML(value) {
-
-    return String(value)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-
-  }
+    }
 
 
-  /* ================================
-     LOGOUT
-     ================================ */
+    /* =========================
+       SECURITY
+       ========================= */
 
-  async function logout() {
+    function escapeHTML(value) {
 
-    await supabaseClient.auth.signOut();
+      return String(value)
 
-    window.location.href =
-      "login.html";
+        .replace(
+          /&/g,
+          "&amp;"
+        )
 
-  }
+        .replace(
+          /</g,
+          "&lt;"
+        )
+
+        .replace(
+          />/g,
+          "&gt;"
+        )
+
+        .replace(
+          /"/g,
+          "&quot;"
+        )
+
+        .replace(
+          /'/g,
+          "&#039;"
+        );
+
+    }
 
 
-  /* ================================
-     START
-     ================================ */
+    /* =========================
+       START
+       ========================= */
 
-  loadStudents();
+    loadStudents();
 
-</script>
+  </script>
 
 </body>
 </html>
